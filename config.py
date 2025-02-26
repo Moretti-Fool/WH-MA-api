@@ -15,6 +15,10 @@ class Settings(BaseSettings): # CASE INSENSITIVE BUT BEST PRACTICE IS TO SET THE
     SMTP_EMAIL: str
     SMTP_PASSWORD: str
     VERIFICATION_TOKEN_EXPIRE: int
+    GOOGLE_CLIENT_ID: str
+    GOOGLE_CLIENT_SECRET: str
+    GOOGLE_REDIRECT_URI: str
+    SECRET_KEY_GOOGLE_AUTH: str
     
     class Config:
         env_file = ".env"

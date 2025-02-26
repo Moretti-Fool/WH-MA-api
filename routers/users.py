@@ -9,8 +9,10 @@ from config import settings
 from utils.security import get_current_user, hash_password, verify_password, create_access_token
 from utils.email import send_email
 
-router = APIRouter()
-
+router = APIRouter(
+    prefix="/users",
+    tags=["Authentication"]
+)
 @router.post("/register")
 def register(user: UserCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
@@ -82,3 +84,8 @@ def login(email: str, password: str, db: Session = Depends(get_db)):
 @router.get("/me")
 def get_user_details(current_user: User = Depends(get_current_user)):
     return {"email": current_user.email, "is_verified": current_user.is_verified}
+
+
+
+
+
